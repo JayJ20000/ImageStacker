@@ -84,3 +84,5 @@ class Stacker
  */
       static Stacker stackImages(const vector<Stacker>& images);
 };
+
+#endif
