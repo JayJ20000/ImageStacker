@@ -4,6 +4,8 @@
 
 using namespace std;
 
+string imageIncramenter(int i);
+
 int main()
 {
   int numImages;           // Number of images to stack
@@ -21,14 +23,16 @@ int main()
       return 1;
     }
 
+  cout << "Please enter the name of the image: ";
+  cin >> fileName;
+  cout << endl;
+  
   // Read in multiple images based on input
   for (int i = 0; i < numImages; ++i)
     {
-      cout << "Enter the name of image " << i + 1 << ": ";
-      cin >> fileName;
-
+      
       Stacker img;       // Create a Stacker object for the image
-      img.readIn(fileName);  // Read in the image from the file
+      img.readIn(fileName + "/" + fileName + imageIncramenter(i));  // Read in the image from the file
       images.push_back(img); // Store the image in the vector
     }
 
@@ -39,4 +43,22 @@ int main()
   stackedImage.saveToFile("stacked_images.ppm");
 
   return 0;
+}
+
+string imageIncramenter(int i)
+{
+  string end = ".ppm";
+  i++;
+  if(i < 10)
+    {
+      return "_00" + to_string(i) + end;
+    }
+  else if(i < 100)
+    {
+      return "_0" + to_string(i) + end;
+    }
+  else
+    {
+      return "_" + to_string(i) + end;
+    }
 }
